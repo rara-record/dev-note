@@ -83,7 +83,44 @@ Atomic Design는 잘 알고 있는 계층형 구조를 몇가지 카테고리로
 step1: 정적인 것을 먼저 만들어라 
 데이터를 먼저 보여줄 건지 말건지 정하기.
 
+리액트는 key로 리렌더링을 할지 말지 구별하기때문에, 키는 유니크 해야함
+```
+ const categories =  products.reduce((acc, product) => (
+  acc.includes(product.category) ? acc : [...acc, product.category]
+), []);
+```
+리듀스 : 누적된거, 현재아이템
+=> 지금 받은 product의 카테고리가, 이미 누적된 값 안에 포함되어있다면
+추가안하고, 없다면 추가함
+
+덩어리들을 충분히 잘게 나눌 수 있음.
+여러개를 쪼개고, 쪼갠 것들이 어떤 데이터를 취하게 될 것인가를 고민하면서 만든다.
+
+정규표현식 / / g : 글로벌
+
+## props
+컴포넌트간의 연결
+길게 코드를 쓰고 적절히 자를 수 있는 부분에서 함수로 추출한다.
+하나씩 함수로 뺀 다음 파일을 만들어도 된다.
 
 
+## utils
+필터링 로직 다른 파일로 빼주기
+```
+const selectProducts = (items:  field: ) => {
+  return items.filter(item => item[field] === value)
+}
+export default select
 
+const selectCategories = (products) => {
+  return products.reduce((acc, product) => {
+   return acc.includes(product.category) ? acc : [...acc, product.category]
+  }, [])
+  
+}
+```
+
+카테고리가 이름과 product를 처음부터 갖게 했다면, 훨씬 단순해진다.
+`selectProducts`이런 함수도 필요 없을 수 있다.
+이미 선택 된 값이 넘어오기 때문임.
 
