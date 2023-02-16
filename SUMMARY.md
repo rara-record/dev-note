@@ -5,6 +5,6 @@
   - [개발 환경](basic/dev-config.md)
 
 - [React](react/README.md)
-  - [jsx](react/jsx.md)
+  - [JSX](react/jsx.md)
   - [React Component](react/react-component.md)
   - [React State](react/react-state.md)
