@@ -21,13 +21,14 @@
 
 
 ### REST API 와 GraphQL
-REST API => resource 중심
+REST API 
+- resource 중심
 GraphQL
 - Graph 자료구조
-- Query(Read), Mutation(Command: Create, Update, delete,)
-Subscript(Event)
+- Query(Read), Mutation(Command: Create, Update, delete,), Subscript(Event)
 
-RESTAPI와 GraphQL의 차이점
+**RESTAPI와 GraphQL의 차이점**
+
 만약 어떤 게시물에 정보를 얻고 싶다고 가정하면, 
 REST API는 게시물을 얻었는데 그 안에 있던 댓글의 정보까지 같이 얻어오게 된다.
 하지만 GraphQL은 Query에서 얻고자 하는 것을 지정할 수 있다.
@@ -38,10 +39,10 @@ REST API는 게시물을 얻었는데 그 안에 있던 댓글의 정보까지 �
 ## JavaScript Object Notation (JSON)
 - 프론트랑 백엔드 사이에서 구조화된 데이터를 표현하기 위한 만들어진 데이터 표준 포맷이다.
 - 기본적으로 string이다.
-- JSON.stringify -> 스트링을 json
+- JSON.stringify -> string을 json
 - JSON.parse 문자열을 -> 자바스크립트 객체로
 
-즉, 자바스크립트에는 converter가 이미 있다는 것.
+> 즉, 자바스크립트에는 converter가 이미 있다는 것.
 
 ## 선언형 UI, 그리고 DSL(Domain-Specific Language)
 F/E는 이 데이터를 사용자가 볼 수 있도록 UI를 구성한다.
@@ -52,7 +53,7 @@ F/E는 이 데이터를 사용자가 볼 수 있도록 UI를 구성한다.
 
 ## 컴포넌트 계층 구조
 
-**리액트의 핵심**
+### 리액트의 핵심
 1. `Component-Based이다.`
 자신의 상태를 캡슐화하고, 그것을 조립하여 만든다.
 개별로써의 컴포넌트는 심플해야 한다. 복잡하면 안됨
@@ -71,7 +72,7 @@ function Welcome(props) {
 }
 ```
 
-> 그렇다면 컴포넌트를 나누는 기준은?
+### 그렇다면 컴포넌트를 나누는 기준은?
 1. [SRP : 단일 책임 원칙](https://ko.wikipedia.org/wiki/%EB%8B%A8%EC%9D%BC_%EC%B1%85%EC%9E%84_%EC%9B%90%EC%B9%99)
 - `모든 컴포넌트는 하나의 책임만 가지고, 캡슐화 해야 한다.`
 - 하나의 컴포넌트가 변경되는 이유는 하나여야 한다. 
@@ -85,13 +86,14 @@ function Welcome(props) {
 하기도 하고, 백엔드에 다시 요청을 하기도 함
 
    
-작은 컴포넌트 = 부품 
+작은 컴포넌트 = 부품
 
 => 부품을 잘 만들어야 조립하기 쉽다. 더 나아가 조합의 가지수를 폭발적으로 늘릴 수 있다.
 
-Atomic Design는 잘 알고 있는 계층형 구조를 몇가지 카테고리로 묶은 방법
-
-=> 개념적인 것이고, 무조건 다 지킬 필요는 없다. 
+Atomic Design
+- 추후 공부 필요
+- 계층형 구조를 몇가지 카테고리로 묶은 방법
+- 개념적인 것이고, 무조건 다 지킬 필요는 없다. 
 
 ### props란
 - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
@@ -118,8 +120,22 @@ function withdraw(account, amount) {
 ```
 
 ## Thinking in react
-**Step1: 정적인 것을 먼저 만들어라**
-- 데이터를 먼저 보여줄 건지 말건지 정하기.
+### 1단계: UI를 구성 요소 계층 구조로 나누기
+
+위에서 서술했다싶시피, JSON이 잘 구조화되어 있으면 자연스럽게 UI의 구성 요소 구조에 매핑되는 경우가 많기 때문에
+UI와 데이터 모델은 종종 동일한 아키텍쳐를 띈다. 각 구성 요소가 데이터 모델의 한 부분과 일치하는 구성 요소로 UI를 분리하자.
+
+계층 구조를 정렬해보는 예시
+- `FilterableProductTable`
+  - `SearchBar`
+  - `ProductTable`
+    - `ProductCategoryRow`
+    - `ProductRow`
+  
+## 2단계: React에서 정적 버전 빌드하기
+- 이 단계에서는 상태를 사용하지 말고, props로 처리해준다.
+> 상태는 상호 작용, 즉 시간이 지남에 따라 변경되는 데이터에만 예약되어 있기 때문에, 정적 버전에서는 필요하지 않다.
+- 계층 구조에서 아래에서 위로, 일반적으로 하향식으로 진행하는 것이 더 쉽지만, 대규모 프로젝트는 상향식으로 진행하는 것이 낫다.
 - 리액트가 컴포넌트 인스턴스를 식별하는 방법으로 `key`가 있기 때문에, `key`는 유니크 해야한다.
 
 ```
@@ -127,16 +143,16 @@ function withdraw(account, amount) {
   acc.includes(product.category) ? acc : [...acc, product.category]
 ), []);
 ```
-리듀스 : 누적된거, 현재아이템
+reduce(누적된거, 현재아이템) : 
 => 지금 받은 product의 카테고리가, 이미 누적된 값 안에 포함되어있다면
 추가안하고, 없다면 추가함
 
 덩어리들을 충분히 잘게 나눌 수 있음.
 여러개를 쪼개고, 쪼갠 것들이 어떤 데이터를 취하게 될 것인가를 고민하면서 만든다.
 
-정규표현식 / / g : 글로벌
+정규표현식에서 글로벌 설정:  / / g
 
-## utils
+**utils**
 - 길게 코드를 쓰고 적절히 자를 수 있는 부분에서 함수로 추출한다.
 - 하나씩 함수로 뺀 다음 파일을 만들어도 된다.
 
