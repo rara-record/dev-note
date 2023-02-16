@@ -23,6 +23,7 @@
 ### REST API 와 GraphQL
 REST API 
 - resource 중심
+
 GraphQL
 - Graph 자료구조
 - Query(Read), Mutation(Command: Create, Update, delete,), Subscript(Event)
