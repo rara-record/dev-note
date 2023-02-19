@@ -73,10 +73,21 @@ function Welcome(props) {
 ```
 
 ### 그렇다면 컴포넌트를 나누는 기준은?
-1. [SRP : 단일 책임 원칙](https://ko.wikipedia.org/wiki/%EB%8B%A8%EC%9D%BC_%EC%B1%85%EC%9E%84_%EC%9B%90%EC%B9%99)
-- `모든 컴포넌트는 하나의 책임만 가지고, 캡슐화 해야 한다.`
-- 하나의 컴포넌트가 변경되는 이유는 하나여야 한다. 
-- 사소한 변경이 있을 시 그에 관련한 것 하나만 고칠 수 있도록.
+1. 단일 책임 원칙 (Single Responsibility Principle: SRP)
+> SOLID의 원칙 중 하나로, 객체 지향 프로그래밍의 유지보수성과 확장성에 도움이 되는 전략이라고 한다.
+> 모든 함수/모듈/컴포넌트는 정확히 한 가지 작업을 수행해야 한다는 원칙인데,
+> 그 원칙을 잘 지키기 위해서는 다음과 같은 작업을 수행하면 된다.
+- 너무 많은 작업을 수행하는 큰 컴포넌트를 더 작은 컴포넌트로 나눈다.
+- 주요 컴포넌트 기능과 관련 없는 코드를 별도의 유틸리티 함수로 추출
+- 주요 컴포넌트 기능과 관련 없는 코드를 별도의 유틸리티 함수로 추출
+- 연결된 기능을 커스텀 훅으로 캡슐화
+- 하나의 컴포넌트가 변경되는 이유는 하나여야 한다. (사소한 변경이 있을 시 그에 관련한 것 하나만 고칠 수 있도록.)
+
+글로 적으면 잘 와닿지 않아서 예시를 보니 이해가 쉬웠다.
+> [React에 SOLID 원칙 적용하기](https://konstantinlebedev.com/solid-in-react/)
+ 
+>[SOLID에 기초한 코드 작성법](https://velog.io/@huurray/SOLID-%EC%9B%90%EC%B9%99%EC%97%90-%EA%B8%B0%EC%B4%88%ED%95%9C-React-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1%EB%B2%95)
+
 2. CSS  
 - 기본적으로 html이 커지는 경우가 많은데 그런 경우는 적절하게 css selector 기준
 3. Design layer
@@ -179,21 +190,6 @@ reduce(누적된거, 현재아이템) :
 **utils**
 - 길게 코드를 쓰고 적절히 자를 수 있는 부분에서 함수로 추출한다.
 - 하나씩 함수로 뺀 다음 파일을 만들어도 된다.
-
-필터링 로직 다른 파일로 빼주기
-```
-const selectProducts = (items:  field: ) => {
-  return items.filter(item => item[field] === value)
-}
-export default select
-
-// utils/selectCategories.tss
-const selectCategories = (products) => {
-  return products.reduce((acc, product) => {
-   return acc.includes(product.category) ? acc : [...acc, product.category]
-  }, [])
-  
-}
 ```
 ## 생각해 볼 것
 - 카테고리가 이름과 product를 처음부터 갖게 했다면, 훨씬 단순해진다.
