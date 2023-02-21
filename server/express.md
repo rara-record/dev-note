@@ -1,31 +1,92 @@
 # Express
 
+## 학습 키워드  ✏️
+
+- Express 란
+- URL 구조
+- REST API
+- HTTP Method(CRUD)
+
 최근에 각광받는 프레임워크도 기본으로 Express 지원 할 정도로 
-node js로 무엇을 만들때 Express를 먼저 고려한다고 생각할 수 있다.
+많은 프레임워크들이 Express를 기반으로 하고 있다.
 
 ### 간단한 서버 앱 npm 패키지 세팅
-````text
-mkdir express-demo-app
+
+[Express 설치](https://expressjs.com/ko/starter/installing.html)
+
+typescript
+```Bash
+npm i -D typescript
+npx tsc --init
+```
+
+ESLint
+```Bash
+npm i -D eslint
+npx eslint --init
+```
+
+ts-node 
+```Bash
+npm i -D ts-node
 ````
-ts-node를 쓰는 이유.
-타입스크립트로 만든 코드를 노드로 한번 컴파일 해줘야 하는데
-tex-node를 쓰면 바로바로 쓸 수 있어서
+> ts-node를 쓰는 이유: 
+> 타입스크립트로 만든 코드를 노드로 한번 컴파일 해줘야 하는데 ts-node를 쓰면 바로바로 쓸 수 있어서
 개발할 때 편하다.
 
-listen
-웹브라우저에서 접속할 때 
-벋아주는 역할
+app.ts 파일 작성
+```typescript
+import express from 'express';
 
-add.get(/로컬호스트/경로)
-경로에는 생략 불가능
-req 브라우저에서 요청
-res 브라우저로 응답
+const port = 3000;
 
-실행할 때 써 있던거 그대로 가기 때문에ㄷ
-다시 시작해야 반영,
-코드 고칠때마다
-서버를 껐다 켰다 하는 방법
-nodemon 개발할때만 쓰면됨. 실제서비스에느 쓰지 않음
+const app = express();
+
+app.get('/', (req, res) => {
+	res.send('Hello, world!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+
+```
+### app.get / app.listen
+**라우팅** : 라우팅은 어플리케이션 엔드 포인트(URI)의 정의, 
+> 즉, URI가 클라이언트 요청에 응답하는 방식이다.
+
+라우트 메소드
+Express는 HTTP 메소드에 get, post, put, head, delete, options.. 
+등등과 같은 라우팅 메소드를 지원한다.
+
+매우 기본적인 라우트의 예
+```
+add.get(/로컬호스트/경로, (req, res) => { })
+```
+경로에는 생략 불가능하며, 
+- req : 브라우저에서 요청
+- res :  브라우저로 응답
+
+```text
+app.listen([port[, host[, backlog]]][, callback])
+app.listen(서버를 오픈할 포트번호, () => { 서버 오픈시 실행할 코드 })
+```
+> app.listen()은 원하는 포트에 서버를 오픈하는 문법으로,
+listen() 함수 안엔 두개의 파라미터가 필요하다.
+
+### 서버 실행
+```
+npx ts-node app.ts
+```
+
+코드를 고칠때마다 서버를 재실행하는 문제가 있어서 nodemon을 사용한다.
+nodemon 개발할때만 쓰면되고, 실제 서비스에는 쓰지 않는다.
+
+```Bash
+npx ts-node app.ts
+```
+
+
 
 ## REST API 
 HTTP 표준 2000년도
