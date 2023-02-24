@@ -36,6 +36,13 @@ props만 사용하는 재사용이 용이한 작은 컴포넌트는 function 컴
 - 복잡한 요소는 전부 Hook으로 격리 및 재사용 가능하다.
 
 ## useEffect
+컴포넌트
+리액트
+브라우저
+
+첫번째 랜더링 숫자0
+
+
 1. 렌더링 이후 해야 할 일, `즉 React의 외부와 관련된 일`을 정해줄 수 있다. 
 ### useEffect는 이벤트 핸들러와 어떻게 다른 것인가?
 렌더링 코드: props와 상태를 가져와 변환하고, 화면에 표시하려는 JSX를 반환한다.
@@ -58,6 +65,7 @@ ref.
 - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
 - [useEffect가 필요하지 않을 수 있다](https://beta.reactjs.org/learn/you-might-not-need-an-effect)
 - [useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
+- [Youtube: All useEffect Mistakes Every Junior React Developer Makes](https://www.youtube.com/watch?v=QQYeipc_cik&t=980s&ab_channel=LamaDev)
 
 ### useEffect 잘 사용하는법
 1. 어떤한 함수를 이펙트 안에서만 쓴다면, 그 함수를 직접 이펙트 안으로 옮길 것
@@ -93,6 +101,7 @@ effect는 변화에 대한 동기화를 실패할 것이다.
 effect 안에 있는 함수들만 신경 쓰면서, 의존성 배열을 관리할 것.
 
 ## React StrictMode
+
 
 
 

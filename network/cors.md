@@ -1,12 +1,20 @@
 # CORS 
 
+## 학습 키워드 ✏️
+
+- Fetch API 란
+- Promise
+- ReableStream
+- Unicode
+- CORS 란
+
 ### 동일 출처 정책 (Same Origin Policy)
 웹 브라우저가 가지고 있는 보안 정책으로 웹 페이지와 리소스를 요청한 곳,
 (현재 프로젝트에서는 해당 REST API SERVER)이 서로 다른 출처 일때(포트까지 포함한다), 
 서버에서 얻은 결과를 사용할 수 없게 막는다. 
 요청과 응답까지는 이미 다 진행이 된 상황이라는 것을 주의.
 
-## 해결 방법 (
+## 해결 방법 
 ### 교차 출처 리소스 공유 (Cross-Origin Resource Sharing, CORS)
 CORS를 이용하여 허용한다. 
 HTTP헤더를 사용하여, 한 출처에서 실행중인 웹 어플리케이션이
