@@ -49,7 +49,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
 ```
 ### app.get / app.listen
 **라우팅** : 라우팅은 어플리케이션 엔드 포인트(URI)의 정의, 
@@ -83,9 +82,8 @@ npx ts-node app.ts
 nodemon 개발할때만 쓰면되고, 실제 서비스에는 쓰지 않는다.
 
 ```Bash
-npx ts-node app.ts
+npx nodemon app.ts
 ```
-
 
 
 ## REST API 
@@ -117,3 +115,31 @@ delete
 featch api, ajax , 등을 통해서 가능
 
  
+### 예제
+```typescript 
+app.get('/products', (req, res) => {
+    const products = [
+        {
+            category: 'Fruits', price: '$1', stocked: true, name: 'Apple',
+        },
+        {
+            category: 'Fruits', price: '$1', stocked: true, name: 'Dragonfruit',
+        },
+        {
+            category: 'Fruits', price: '$2', stocked: false, name: 'Passionfruit',
+        },
+        {
+            category: 'Vegetables', price: '$2', stocked: true, name: 'Spinach',
+        },
+        {
+            category: 'Vegetables', price: '$4', stocked: false, name: 'Pumpkin',
+        },
+        {
+            category: 'Vegetables', price: '$1', stocked: true, name: 'Peas',
+        },
+    ];
+    
+    res.send({ products });
+});
+
+```

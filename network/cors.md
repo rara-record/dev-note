@@ -26,3 +26,13 @@ REST API 서버에서 Headers에 `Access-Control-Allow-Origin` 속성을 추가�
 
 
 > Express에서는 [CORS 미들웨어](https://expressjs.com/en/resources/middleware/cors.html)를 설치해서 사용하면 된다.
+
+```
+npm i cors
+npm i -D @types/cors
+```
+
+추가 코드
+```
+app.use(cors())
+```
