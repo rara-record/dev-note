@@ -50,7 +50,11 @@ React에서 setInterval 등을 쓸 때는 주의해야 할 부분이 있어서 C
 
 ### [useEventListener](https://usehooks-ts.com/react-hook/use-event-listener)
 
-모든 종류의 이벤트를 확인할 수 있음. 특히 dispatchEvent로 전달되는 커스텀 이벤트에 반응하기 좋다. (강력 추천!)
+모든 종류의 이벤트를 확인할 수 있음. 특히 dispatchEvent로 전달되는 커스텀 이벤트에 반
+
+
+
+응하기 좋다. (강력 추천!)
 
 ### [useLocalStorage](https://usehooks-ts.com/react-hook/use-local-storage)
 
