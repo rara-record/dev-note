@@ -26,6 +26,43 @@
 - 중복을 일부러 만들어내서, 패턴을 찾아내서 정리한다
 
 ## Jest
+Jest에서 typescript 사용하도록 파일 추가
+```
+jset.config.js
+```
+```javascript
+module.exports = {
+	testEnvironment: 'jsdom',
+	setupFilesAfterEnv: [
+		'@testing-library/jest-dom/extend-expect',
+	],
+	transform: {
+		'^.+\\.(t|j)sx?$': ['@swc/jest', {
+			jsc: {
+				parser: {
+					syntax: 'typescript',	
+					jsx: true,
+					decorators: true,
+				},
+				transform: {	
+					react: {
+						runtime: 'automatic',
+					},
+				},
+			},
+		}],
+	},
+};
+```
 
+```typescript
+// 함수 정의
+const add = (x: number, y: number): number => { 
+  return 0;
+}
+
+test.co
+
+```
 
 
