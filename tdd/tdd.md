@@ -23,7 +23,7 @@
 모아서 처리할 수 있다.
 
 훈련방법
-- 중복을 일부러 만들어내서, 패턴을 찾아내서 정리한다
+- 작은 단계를 찾고, 중복을 일부러 만들어내서, 패턴을 찾아내서 중복을 제거하고 정리한다
 
 ## Jest
 Jest에서 typescript 사용하도록 파일 추가
@@ -55,14 +55,64 @@ module.exports = {
 };
 ```
 
-```typescript
+Jest 실행
+```
+npx jest
+
+npx jest --watchAll
+```
+
+## Given-When-Then
+테스크 코드 템플릿.
+> 700W 전자렌지를 준비해서 3분만 돌리면 완성!
+
+코드로 보기
+```
+# Given ~ 하고, ~ 할때
+stove = Stove.new(700.watts)
+
+# When ~ 하면
+food = stove.cook(3.minutes)
+
+# Then ~ 가 된다, ~를 한다.
+assert food.complete?
+```
+
+## 테스트 코드 작성
+> 테스트 코드를 작성하는 방법은 크게 두가지 이다.
+1. test 함수로 개별 테스트를 나열한다.
+
+ 개별 테스트 코드 작성 해보기
+```jset
 // 함수 정의
-const add = (x: number, y: number): number => { 
+const add = (x: number, y: number): number => {
   return 0;
 }
 
-test.co
 
+test('add 함수는 두 훗자를 더한다.' () => {
+  expect(add(1, 2)).toBe(3);
+});
+
+
+expect() // 기대 함수
+toBe() // 결과값
 ```
+
+2. BDD 스타일로 대상과 행위를 명확히 드러낸다.
+```jset
+describe('add', () => { 
+  it('add 함수는 두 숫자를 더해서 리턴한다', () => {
+    expect(add(1, 2))
+      .toBe(3);
+  });
+});
+
+add // 주어
+it // 설명
+add 함수는 ~ it ~한다.
+```
+재귀로 하는 것들은, reduce를 쓰면 거의 똑같이 됨.
+
 
 
