@@ -26,6 +26,14 @@
 - 작은 단계를 찾고, 중복을 일부러 만들어내서, 패턴을 찾아내서 중복을 제거하고 정리한다
 
 ## Jest
+자바스크립트 환경에서는 jest를 다 사용할 수 있다.
+
+### 특징
+1. 복잡한 설정이 필요 없다
+2. snapshots test를 지원한다
+- 단위테스트와는 별개이다.
+- 어떠한 object를 캡쳐할 수 있는, 즉  
+
 Jest에서 typescript 사용하도록 파일 추가
 ```
 jset.config.js
@@ -78,7 +86,11 @@ food = stove.cook(3.minutes)
 assert food.complete?
 ```
 
-## 테스트 코드 작성
+## 유닛 테스트
+단위 테스트.
+> [jest 공식문서](https://mulder21c.github.io/jest/docs/en/next/getting-started.html)
+> 
+
 > 테스트 코드를 작성하는 방법은 크게 두가지 이다.
 1. test 함수로 개별 테스트를 나열한다.
 
@@ -114,5 +126,6 @@ add 함수는 ~ it ~한다.
 ```
 재귀로 하는 것들은, reduce를 쓰면 거의 똑같이 됨.
 
-
+## 리액트 테스트 라이브러리
+리액트 컴포넌트를 사용자 입장에 가깝게 테스트할 수 있는 도구이다.
 
