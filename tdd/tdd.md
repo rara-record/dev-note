@@ -32,8 +32,6 @@
 1. 복잡한 설정이 필요 없다
 2. snapshots test를 지원한다
 - 단위테스트와는 별개이다.
-- 어떠한 object를 캡쳐할 수 있는, 즉  
-
 Jest에서 typescript 사용하도록 파일 추가
 ```
 jset.config.js
@@ -91,10 +89,8 @@ assert food.complete?
 > [jest 공식문서](https://mulder21c.github.io/jest/docs/en/next/getting-started.html)
 > 
 
-> 테스트 코드를 작성하는 방법은 크게 두가지 이다.
+### 테스트 코드를 작성하는 방법
 1. test 함수로 개별 테스트를 나열한다.
-
- 개별 테스트 코드 작성 해보기
 ```jset
 // 함수 정의
 const add = (x: number, y: number): number => {
@@ -107,8 +103,10 @@ test('add 함수는 두 훗자를 더한다.' () => {
 });
 
 
-expect() // 기대 함수
-toBe() // 결과값
+expect() : 기대 함수
+toBe() : 결과값
+beforeEach : 테스트 함수가 실행되기 전 호출 
+afterEach : 테스트 함수가 끝나면 호출
 ```
 
 2. BDD 스타일로 대상과 행위를 명확히 드러낸다.
@@ -124,7 +122,6 @@ add // 주어
 it // 설명
 add 함수는 ~ it ~한다.
 ```
-재귀로 하는 것들은, reduce를 쓰면 거의 똑같이 됨.
 
 ## 리액트 테스트 라이브러리
 리액트 컴포넌트를 사용자 입장에 가깝게 테스트할 수 있는 도구이다.
