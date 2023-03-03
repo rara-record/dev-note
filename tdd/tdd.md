@@ -26,24 +26,6 @@
 - 배포용 코드와 철저히 분리한다.
 - 테스트 코드는 어느정도 문서화라는 것을 잊지 말기
 
-## 좋은 테스트의 구조 Given-When-Then 
-- Given : 준비
-- When : 실행
-- Then : 결과
-테스트 코드 템플릿.
-> 700W 전자렌지를 준비해서 3분만 돌리면 완성!
-
-코드로 보기
-```
-# Given : 준비, ( ~ 하고, ~ 할때 )
-stove = Stove.new(700.watts)
-
-# When :  실행,  (~ 하면 )
-food = stove.cook(3.minutes)
-
-# Then ~ : 결과값 확인,  (가 된다, ~를 한다.)
-assert food.complete?
-```
 
 ### 무엇을 테스트 해야 할지 모를 때의 법칙
 테스트의 범위
@@ -194,16 +176,4 @@ describe('add', () => {
 add // 주어
 it // 설명
 add 함수는 ~ it ~한다.
-```
-
-
-## 리액트 테스트 라이브러리
-리액트 컴포넌트를 사용자 입장에 가깝게 테스트할 수 있는 도구이다.
-freEvent 이벤트 쓸 때
-jest.fn: 가짜로 mocking
-
-```javascript
-fireEvent.change(screen.getByLabelText(label), {
-  
-})
 ```
