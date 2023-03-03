@@ -181,6 +181,8 @@ afterEach : 테스트 함수가 끝나면 호출
 ```
 
 2. BDD 스타일로 대상과 행위를 명확히 드러낸다.
+   describe: 
+
 ```jset
 describe('add', () => { 
   it('add 함수는 두 숫자를 더해서 리턴한다', () => {
@@ -197,5 +199,11 @@ add 함수는 ~ it ~한다.
 
 ## 리액트 테스트 라이브러리
 리액트 컴포넌트를 사용자 입장에 가깝게 테스트할 수 있는 도구이다.
+freEvent 이벤트 쓸 때
+jest.fn: 가짜로 mocking
 
-
+```javascript
+fireEvent.change(screen.getByLabelText(label), {
+  
+})
+```
