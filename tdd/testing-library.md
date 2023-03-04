@@ -7,8 +7,6 @@
 - Mocking
 - Test fixture
 
-
-
 ## 좋은 테스트의 구조 Given-When-Then
 - Given : 준비
 - When : 실행
