@@ -39,9 +39,10 @@ assert food.complete?
 
 
 ## 1-2. Mocking
-Jest를 사용할 때 장점 중에 하나는 다른 라이브러리 설치 없이 바로 mock 기능을 지원한다는 점인데,
-mocking이란 무엇인가? mocking은 단위 테스트를 작성 할 때
-해당 코드가 의존하는 부분을 가짜로 대체하는 기법을 말한다.
+Jest를 사용할 때 장점 중에 하나는 다른 라이브러리 설치 없이 바로 mock 기능을 지원한다는 점이다.
+
+### mocking이란 무엇인가?
+mocking은 단위 테스트를 작성 할 때 해당 코드가 의존하는 부분을 가짜로 대체하는 기법을 말한다.
 
 일반적으로 테스트하려는 코드가 의존하는 부분을 직접 생성하기가
 힘든 경우 mocking이 많이 사용된다.
@@ -99,9 +100,56 @@ beforeEach(() => {
 
 ```
 
-
 1. 반복 되는 코드는 Extract Function한다.
 2. fireEvent 등을 통해 인터렉션만 검증할 것
 
-
 ## Test fixture
+비지니스 로직같이 외부와 의존성이 큰 경우도
+해당 부분만 가짜로 만들 수 있는데, 
+이 부분을 하나씩 구현하다보면 에로사항이 있을 수 있다.
+
+```javascript
+// App.test.ts
+
+jest.mock('./hooks/useFetchProducts', () => () => [
+  {
+    category: 'Fruits', price: '$1', stocked: true, name: 'Apple',
+  },
+]);
+```
+백엔드와 소통할 떄마다, 매번 해당 hook 등을 불러와서, 써줘야 하기 때문에
+해당 부분은 fixtures 이름으로 관리해준다.
+
+```javascript
+// fixtures/products.ts
+
+const products = [
+  {
+    category: 'Fruits', price: '$1', stocked: true, name: 'Apple',
+  }]
+
+export default products
+
+// fixtures/index.ts
+import products from 'products'
+
+export default {
+  products
+}
+```
+다시 App.test.ts로 돌아와서, fixture에 product를 불러온 후
+
+```javascript
+// App.test.ts
+
+import fixture from '../fixture'
+
+jest.mock('./hooks/useFetchProducts', () => () => fixture.products);
+```
+이렇게 수정해서 사용하여도 된다.
+
+> 또다른 방법은, hooks 하위 폴더에 `__mock__` 폴더를 만들어서, 
+```javascript
+jest.mock('./hooks/useFetchProducts', () => () => fixture.products);
+```
+해당 부분을 export하여, App.test.ts로 불러올 수 있다.
