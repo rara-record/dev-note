@@ -78,20 +78,6 @@ module.exports = {
 };
 ```
 
-src/setupTests.ts 파일
-```javascript
-// polyfill library, 뒤에 내용에서 다룸
-import "whatwg-fetch";
-
-import server from './mocks/server';
-
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
-
-afterAll(() => server.close());
-
-afterEach(() => server.resetHandlers());
-```
-
 ## 2-1. 요청 핸들러 작성
 가짜 API를 구현하려면 요청이 들어왔을 때 임의의 응답을 해주는 핸들러(handler) 코드를 작성해야한다.
 모킹 관련 코드를 프로젝트의 아무데나 상관해도 상관은 없으나 
@@ -132,8 +118,25 @@ const server = setupServer(...handlers);
 export default server;
 ```
 
+## 2-3. setup 파일 설정
+
+src/setupTests.ts 파일
+```javascript
+// polyfill library, 뒤에 내용에서 다룸
+import "whatwg-fetch";
+
+import server from './mocks/server';
+
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+
+afterAll(() => server.close());
+
+afterEach(() => server.resetHandlers());
+```
+
 ### 실행
 ```typescript jsx
+// App.test.ts
 import { render, screen, waitFor } from '@testing-library/react';
 
 import App from './App';
