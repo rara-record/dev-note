@@ -1,4 +1,4 @@
-## 리액트 테스트 라이브러리
+# React Testing Library
 
 ### 학습 키워드
 
