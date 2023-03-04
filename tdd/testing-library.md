@@ -7,7 +7,44 @@
 - Mocking
 - Test fixture
 
-## 좋은 테스트의 구조 Given-When-Then
+## 1. React Testing Library
+Jest의 대체품이 아니며, React 구성 요소(component 등)을 테스트하기 위해 만들어진 제작된 JavaScript 테스트 유틸리티이다.
+하여, 리액트 컴포넌트를 테스트하려면 Jest + React Testing Library가 필요하다.
+react-testing-library는 리액트 컴포넌트 testing을 위한 가상 돔(Virtual DOM)을 제공해준다.
+
+```text
+--npx tsc --noEmit : 원래 컴파일한 결과가 js 파일로 생기는데 안생기게 하는 명령어
+```
+
+## 1-1. 컴포넌트 테스트 코드를 작성하는 법
+
+먼저 TextField 컴포넌트 테스트 코드를 작성해보자.
+```typescript jsx
+import { render, screen } from "@testing-library/react";
+
+import TextField from "./TextField";
+
+test("TextField", () => {
+  const text = "Tester";
+  const setText = () => {
+    // 
+  };
+  render(
+    <TextField
+      //라벨 추가
+      label="Name"
+      placeholder="Input your name"
+      //범용적 표현으로 수정
+      text={text}
+      setText={setText}
+    />
+  );
+
+  screen.getByLabelText("Name");
+});
+```
+
+이 코드를 BDD 스타일의 테스트 코드로 작성하려면, Given-When-Then 패턴을 사용한다.
 - Given : 준비
 - When : 실행
 - Then : 결과
@@ -26,20 +63,17 @@ food = stove.cook(3.minutes)
 assert food.complete?
 ```
 
-## 1. React Testing Library
-리액트 컴포넌트를 사용자 입장에 가깝게 테스트할 수 있는 도구이다.
-
-
-## 1-1. 이벤트 관련 API
-[jest event api](https://github.com/testing-library/dom-testing-library/blob/main/src/event-map.js)
+### 이벤트 관련 API
+[event api](https://github.com/testing-library/dom-testing-library/blob/main/src/event-map.js)
 
 > fireEvent: 컴포넌트 내부에서 이벤트 핸들러를 구현하지 않고, 외부에서 받아오는 경우
 
 
 ## 1-2. Mocking
-Jest를 사용할 때 장점 중에 하나는 다른 라이브러리 설치 없이 바로 mock 기능을 지원한다는 점이다.
-
 ### mocking이란 무엇인가?
+>[모킹 정리 블로그](https://inpa.tistory.com/entry/JEST-%F0%9F%93%9A-%EB%AA%A8%ED%82%B9-mocking-jestfn-jestspyOn)
+
+Mock Service Worker의 약자. 서비스 워커의 기능을 유용히 활용한 것이다.
 mocking은 단위 테스트를 작성 할 때 해당 코드가 의존하는 부분을 가짜로 대체하는 기법을 말한다.
 
 일반적으로 테스트하려는 코드가 의존하는 부분을 직접 생성하기가

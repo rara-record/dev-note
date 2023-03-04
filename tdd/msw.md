@@ -20,7 +20,7 @@ ServiceWorker는
 캐시가 삭제되지 않는 한 브라우저는 인터넷 연결 없이도 정보를 보여줄 수 있다.
 
 
-## MSW
+## 2. MSW
 > [MSW](https://mswjs.io/)
 >
 
@@ -35,7 +35,6 @@ ServiceWorker는
 
 > [Integrate mocking into Node](https://mswjs.io/docs/getting-started/integrate/node)
 >
-Mock Service Worker의 약자. 서비스 워커의 기능을 유용히 활용한 것이다.
 브라우저나 노드에서 쓸 수 있는 네트워크 레벨에서 프록시를 이용해서 가짜로 구현해준다.
 
 MSW 패키지 설치
