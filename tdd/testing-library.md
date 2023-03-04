@@ -16,60 +16,7 @@ react-testing-library는 리액트 컴포넌트 testing을 위한 가상 돔(Vir
 --npx tsc --noEmit : 원래 컴파일한 결과가 js 파일로 생기는데 안생기게 하는 명령어
 ```
 
-## 1-1. 컴포넌트 테스트 코드를 작성하는 법
-
-먼저 TextField 컴포넌트 테스트 코드를 작성해보자.
-```typescript jsx
-import { render, screen } from "@testing-library/react";
-
-import TextField from "./TextField";
-
-test("TextField", () => {
-  const text = "Tester";
-  const setText = () => {
-    // 
-  };
-  render(
-    <TextField
-      //라벨 추가
-      label="Name"
-      placeholder="Input your name"
-      //범용적 표현으로 수정
-      text={text}
-      setText={setText}
-    />
-  );
-
-  screen.getByLabelText("Name");
-});
-```
-
-이 코드를 BDD 스타일의 테스트 코드로 작성하려면, Given-When-Then 패턴을 사용한다.
-- Given : 준비
-- When : 실행
-- Then : 결과
-  테스트 코드 템플릿.
-> 700W 전자렌지를 준비해서 3분만 돌리면 완성!
-
-코드로 보기
-```
-# Given : 준비, ( ~ 하고, ~ 할때 )
-stove = Stove.new(700.watts)
-
-# When :  실행,  (~ 하면 )
-food = stove.cook(3.minutes)
-
-# Then ~ : 결과값 확인,  (가 된다, ~를 한다.)
-assert food.complete?
-```
-
-### 이벤트 관련 API
-[event api](https://github.com/testing-library/dom-testing-library/blob/main/src/event-map.js)
-
-> fireEvent: 컴포넌트 내부에서 이벤트 핸들러를 구현하지 않고, 외부에서 받아오는 경우
-
-
-## 1-2. Mocking
+## 1-1. Mocking
 ### mocking이란 무엇인가?
 >[모킹 정리 블로그](https://inpa.tistory.com/entry/JEST-%F0%9F%93%9A-%EB%AA%A8%ED%82%B9-mocking-jestfn-jestspyOn)
 
@@ -110,6 +57,12 @@ Jest에서 테스트 코드에서 수동으로 mock을 정리하는 방법
 - `mockFn.mockReset`
 - `mockFn.mockRestore`
 
+### 이벤트 관련 API
+[event api](https://github.com/testing-library/dom-testing-library/blob/main/src/event-map.js)
+
+> fireEvent: 컴포넌트 내부에서 이벤트 핸들러를 구현하지 않고, 외부에서 받아오는 경우
+>
+>
 
 
 ```javascript
@@ -132,8 +85,125 @@ beforeEach(() => {
 
 ```
 
-1. 반복 되는 코드는 Extract Function한다.
-2. fireEvent 등을 통해 인터렉션만 검증할 것
+> 반복 되는 코드는 Extract Function한다.
+> 
+
+> fireEvent 등을 통해 인터렉션만 검증할 것
+
+## 1-2. 컴포넌트 테스트 코드를 작성하는 법
+
+먼저 TextField 컴포넌트 테스트 코드를 작성해보자.
+```typescript jsx
+import { render, screen } from "@testing-library/react";
+
+import TextField from "./TextField";
+
+test("TextField", () => {
+  const text = "Tester";
+  const setText = () => {
+    // 
+  };
+  render(
+    <TextField
+      label="Name"
+      placeholder="Input your name"
+      // filterText -> text로 수정
+      text={text}
+      setText={setText}
+    />
+  );
+
+  screen.getByLabelText("Name");
+});
+```
+
+### Given-When-Then 패턴
+이 코드를 BDD 스타일의 테스트 코드로 작성하려면, Given-When-Then 패턴을 사용한다.
+- Given : 준비
+- When : 실행
+- Then : 결과
+  테스트 코드 템플릿.
+> 700W 전자렌지를 준비해서 3분만 돌리면 완성!
+
+코드로 보기
+```
+# Given : 준비, ( ~ 하고, ~ 할때 )
+stove = Stove.new(700.watts)
+
+# When :  실행,  (~ 하면 )
+food = stove.cook(3.minutes)
+
+# Then ~ : 결과값 확인,  (가 된다, ~를 한다.)
+assert food.complete?
+```
+
+### given-when-then 패턴으로 구현하기
+```typescript jsx
+import { fireEvent, render, screen } from "@testing-library/react";
+
+import TextField from "./TextField";
+
+const context = describe;
+
+// TextField가 테스트 대상
+describe("TextField", () => {
+  //given : 상태 변수등을 "준비" 한다.
+  const label = "Name";
+  const text = "Tester";
+
+  const setText = jest.fn();
+  
+  beforeEach(() => {
+    // setText.mockClear();
+    jest.clearAllMocks();
+  });
+
+  // 반복되는 부분은 추출하여 분리한다.
+  function renderTextField() {
+    render(
+      <TextField
+        label={label}
+        placeholder="input your name"
+        text={text}
+        setText={setText}
+      />
+    );
+  }
+
+  // 이벤트 함수 작성
+  function inputText(value: string) {
+    fireEvent.change(screen.getByLabelText(label), {
+      target: { value },
+    });
+  }
+
+// 1. 렌더링 여부 테스트
+  it('renders an input control', () => {
+    //when : 텍스트 필드 함수를 렌더링 했을 "때"
+    renderTextField();
+
+    //then : 화면이 잘 뜨는 지 "결과"를 나타낸다.
+    screen.getByLabelText('Name');
+  });
+
+  // 2. 이벤트가 동작 여부 성공 테스트
+  //when : 사용자가 검색창에 이름을 입력하면
+  context("when user enters name", () => {
+    beforeEach(() => {
+      renderTextField();
+    });
+    
+    //then : setText 함수가 호출된다.
+    it('calls "setText" handler', () => {
+      inputText("New Name");
+  
+      expect(setText).toBeCalledWith("New Name");
+    });
+  });
+});
+```
+
+
 
 ## Test fixture
 비지니스 로직같이 외부와 의존성이 큰 경우도
