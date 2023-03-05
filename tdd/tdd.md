@@ -175,7 +175,7 @@ npx jest --watchAll
 ```
 
 
-## 2-1. Jest 기본 문법
+## 2-2. Jest 기본 문법
 [Jest Docs](https://jestjs.io/docs/expect#reference)
 먼저 test 파일을 만든다. test파일은 테스트할함수파일명.test.js 로 해준다.
 
@@ -219,7 +219,7 @@ describe('그룹 테스트 설명 문자열', () => {
 [유용한 Matcher 함수 종류 모음](https://inpa.tistory.com/entry/JEST-%F0%9F%93%9A-jest-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC)
 
 
-## 2-2. 테스트 코드를 작성하는 방법
+## 2-3. 테스트 코드를 작성하는 방법
 방법으로는 크게 두가지가 있는데, 개별 테스트로 '나열'하는 방식과,
 주체-행위, 그룹안에 개별 개별 개별이 존재하게 조직화 한다.
 

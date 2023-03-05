@@ -87,6 +87,8 @@ REST API를 모킹할 때는 msw 모듈의 rest 객체를 사용한다.
 Express.js 서버에서 볼 수 있는 코딩 패턴과 상당히 유사한 방식으로 핸들러를 구현할 수 있습다.
 
 ```typescript
+// src/mocks/handlers.ts 파일
+
 import { rest } from "msw";
 import fixtures from "../../fixtures";
 
@@ -107,8 +109,9 @@ export default handlers;
 다음으로 msw 모듈에서 제공하는 setupWorker() 함수를 사용해서 서비스 워커를 생성한다. 
 위에서 작성한 요청 핸들러 코드를 불러와서 그대로 setupWorker() 함수의 인자로 넘겨주면 된다.
 
-src/mocks/server.ts
 ```typescript
+// src/mocks/server.ts
+
 import { setupServer } from 'msw/node';
 
 import handlers from './handlers';
@@ -119,7 +122,6 @@ export default server;
 ```
 
 ## 2-3. setup 파일 설정
-
 src/setupTests.ts 파일
 ```javascript
 // polyfill library, 뒤에 내용에서 다룸
