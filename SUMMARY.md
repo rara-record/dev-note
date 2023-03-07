@@ -23,6 +23,10 @@
   - [MSW](tdd/msw.md)
   - [Playwright](tdd/playwright.md)
 
+- [External Store](external-store/README.md)
+  - [관심사의 분리](external-store/external-store.md)
+  - 
+
 - [Network](network/README.md)
   - [CORS](network/cors.md)
 
