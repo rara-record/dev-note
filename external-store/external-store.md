@@ -24,15 +24,8 @@
 2. 관심사 분리라는 것이 추상화의 일종인데, 추상화는 인터페이스의 추가는 필수이고 실행에 쓰이는 더 순수한 코드가 있는 것이 일반적이라
 잘 분리된 관심사의 여러 장점에도 불구하고 관련 실행에 따른 불이익이 있기도 하다.
 
-
-
+   
 ## 계층화 아키텍쳐 Layered Architecture
-
-
-
-
-
-
 
 Layered Architecture에선 사용자에게 가까운 것과 사용자에게서 먼 것으로 구분
 
@@ -62,7 +55,7 @@ const nextState = { ...state, name: 'New Name'}
 리듀서가 기본형
 setState가 내부적으로 useReducer를 쓴다
 
-
+forceupdate
 
 
 
