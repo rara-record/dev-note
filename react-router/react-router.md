@@ -128,6 +128,7 @@ App 컴포넌트를 거치지 않고 바로 브라우저 라우터 만들어서 
 ```typescript tsx
 import { Outlet } from "react-router-dom";
 
+// Layout.tsx
 function Layout() {
   return (
     <div>
@@ -138,6 +139,7 @@ function Layout() {
   );
 }
 
+// routes.tsx
 const routes = [
   {
     element: <Layout />,
