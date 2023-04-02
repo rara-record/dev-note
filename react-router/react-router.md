@@ -153,12 +153,12 @@ const routes = [
 export default routes;
 ```
 
-## 3. Natigate
+## 3. Link
 
 리액트에서 링크 이동 하는 방법
 
 ```typescript tsx
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 ```
 
 ```typescript tsx
