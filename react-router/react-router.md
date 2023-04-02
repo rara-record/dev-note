@@ -153,7 +153,19 @@ const routes = [
 export default routes;
 ```
 
-## 3. MemoryRouter
+## 3. Natigate
+
+리액트에서 링크 이동 하는 방법
+
+```typescript tsx
+import { Link, useNavigate } from "react-router-dom";
+```
+
+```typescript tsx
+<Link to='/order'>매장 주문</Link>
+```
+
+## 4. MemoryRouter
 
 테스트 환경에서는 MemoryRouter를 쓸 수 있다.
 
