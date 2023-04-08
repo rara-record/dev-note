@@ -125,6 +125,8 @@ App 컴포넌트를 거치지 않고 바로 브라우저 라우터 만들어서 
 
 ### Outlet을 사용하여 레이아웃 관리하기
 
+먼저, Layout과 routes 파일을 만든다.
+
 ```typescript tsx
 import { Outlet } from "react-router-dom";
 
