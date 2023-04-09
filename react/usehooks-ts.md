@@ -3,13 +3,13 @@
 ## 학습 키워드
 
 - usehooks-ts
-    - useBoolean
-    - useEffectOnce
-    - useFetch
-    - useInterval
-    - useEventListener
-    - useLocalStorage
-    - useDarkMode
+  - useBoolean
+  - useEffectOnce
+  - useFetch
+  - useInterval
+  - useEventListener
+  - useLocalStorage
+  - useDarkMode
 - swr
 - react-query
 
@@ -45,14 +45,12 @@
 React에서 setInterval 등을 쓸 때는 주의해야 할 부분이 있어서 Custom Hook을 만들어서 해결해야 함.
 
 - [useEffect 관점](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
-    - [React에서의 타이머 part 1 : setInterval 말고 이것! - 코드종님 영상](https://youtu.be/2tUdyY5uBSw)
+  - [React에서의 타이머 part 1 : setInterval 말고 이것! - 코드종님 영상](https://youtu.be/2tUdyY5uBSw)
 - [Ref 활용](https://overreacted.io/making-setinterval-declarative-with-react-hooks/)
 
 ### [useEventListener](https://usehooks-ts.com/react-hook/use-event-listener)
 
 모든 종류의 이벤트를 확인할 수 있음. 특히 dispatchEvent로 전달되는 커스텀 이벤트에 반
-
-
 
 응하기 좋다. (강력 추천!)
 

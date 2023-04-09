@@ -48,7 +48,7 @@ const UserList = ({ users }) => {
 
 ### Container Component : Logic Only 컴포넌트 (Logic)
 
-```typescript jsx
+```typescript.tsx
 class UserListContainer extends React.Component {
 	state = {
 		users: []

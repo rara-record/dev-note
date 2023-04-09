@@ -170,6 +170,8 @@ import { Link } from "react-router-dom";
 ## 4. MemoryRouter
 
 테스트 환경에서는 MemoryRouter를 쓸 수 있다.
+메모리 라우터를 만들어서 테스트하기
+| [createMemoryRouter](https://reactrouter.com/en/main/routers/create-memory-router)
 
 ```typescript tsx
 const context = describe;
@@ -191,4 +193,56 @@ describe('App', () => {
     });
   });
 });
+```
+
+## Test Helper
+
+테스트 코드에서 styled-components의 Theme과 React Router의 Link 등을 사용할 때 문제가 발생하지 않도록, React Testing Library의 render를 한번 감싼 테스트용 헬퍼 함수를 준비.
+
+```typescript tsx
+import { render as originalRender } from "@testing-library/react";
+
+import React from "react";
+
+import { MemoryRouter } from "react-router-dom";
+
+import { ThemeProvider } from "styled-components";
+
+import defaultTheme from "./styles/defaultTheme";
+
+export function render(element: React.ReactElement) {
+  return originalRender(
+    <MemoryRouter initialEntries={["/"]}>
+      <ThemeProvider theme={defaultTheme}>{element}</ThemeProvider>
+    </MemoryRouter>
+  );
+}
+```
+
+라우터를 객체로 만들어서 쓸때 테스트 코드이다.
+
+```typescript tsx
+describe('routes'', () => {
+  function renderRouter(path: string) {
+		const router = createMemoryRouter(routes, { initialEntries: [path] });
+		render(<RouterProvider router={router} />);
+	}
+
+	context('when the current path is “/”', () => {
+		it('renders the home page', () => {
+			renderRouter('/');
+
+			screen.getByText(/Hello/);
+		});
+	});
+
+	context('when the current path is “/about”', () => {
+		it('renders the about page', () => {
+			renderRouter('/about');
+
+			screen.getByText(/About/);
+		});
+	});
+});
+
 ```

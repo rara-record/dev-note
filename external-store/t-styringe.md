@@ -7,7 +7,7 @@
 - reflect-metadata
 - sington (싱글톤)
 
-> [TSyringe](https://github.com/microsoft/tsyringe)
+> [TSyringe](https://github.c om/microsoft/tsyringe)
 
 > [reflect-metadata](https://github.com/rbuckton/reflect-metadata)
 
